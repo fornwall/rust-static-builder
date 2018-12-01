@@ -6,10 +6,10 @@ From inside your project directoring containing a `Cargo.toml` file:
 
 ```sh
 # Stable release channel:
-docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder
 
 # Nightly release channel:
-docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly 
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly 
 ```
 
 A statically linked binary will be created under `target/x86_64-unknown-linux-musl/release/`.
@@ -30,7 +30,7 @@ Override the entry point to run tests against the statically linked binary:
 
 ```sh
 docker run \
-       -v "$(PWD)":/build \
+       -v "$PWD":/build \
        -v $HOME/.cargo/git:/root/.cargo/git \
        -v $HOME/.cargo/registry:/root/.cargo/registry \
        --entrypoint cargo \
@@ -42,7 +42,10 @@ docker run \
 By default the built binary will be stripped. Run with `-e NOSTRIP=1`, as in
 
 ```sh
-docker run --rm -e NOSTRIP=1 -v "$(pwd)":/build fredrikfornwall/rust-static-builder
+docker run \
+       -e NOSTRIP=1 \
+       -v "$PWD":/build \
+       fredrikfornwall/rust-static-builder
 ```
 
 to disable stripping.
