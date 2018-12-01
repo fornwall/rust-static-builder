@@ -1,4 +1,4 @@
-# Rust static builder
+# Rust static executable builder
 Docker image for building static Linux binaries from Rust projects.
 
 ## Building
