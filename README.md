@@ -1,5 +1,5 @@
 # Rust static executable builder
-Docker image for building static Linux binaries from Rust projects.
+Docker image for building statically linked Linux binaries from Rust projects.
 
 ## Building
 From inside your project directoring containing a `Cargo.toml` file:
@@ -67,4 +67,3 @@ FROM fredrikfornwall/scratch-with-certificates
 COPY target/x86_64-unknown-linux-musl/release/tls-using-executable /
 ENTRYPOINT ["/tls-using-executable"]
 ```
-
