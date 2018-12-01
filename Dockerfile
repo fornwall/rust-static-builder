@@ -13,9 +13,5 @@ RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain stable && \
     rustup target add x86_64-unknown-linux-musl
 
-WORKDIR /build
-COPY build.sh /root/build.sh
-
-ENTRYPOINT /root/build.sh
 ENTRYPOINT ["cargo", "build", "--release", "--target", "x86_64-unknown-linux-musl" ]
 
