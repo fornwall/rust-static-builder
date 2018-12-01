@@ -7,6 +7,7 @@ From inside your project directoring containing a `Cargo.toml` file:
 ```sh
 # Stable release channel:
 docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder
+
 # Nightly release channel:
 docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly 
 ```
@@ -17,7 +18,11 @@ A statically linked executable will be created under `target/x86_64-unknown-linu
 Override the entry point to run tests against the statically linked executable:
 
 ```sh
-docker run -v "$(PWD)":/build -v --entrypoint cargo fredrikfornwall/rust-static-builder test --target x86_64-unknown-linux-musl
+docker run \
+       -v "$(PWD)":/build \
+       --entrypoint cargo \
+       fredrikfornwall/rust-static-builder \
+       test --target x86_64-unknown-linux-musl
 ```
 
 ## Disable stripping
