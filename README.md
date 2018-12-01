@@ -1,4 +1,4 @@
-# Rust static executable builder
+# Rust static binary builder
 Docker image for building statically linked Linux binaries from Rust projects.
 
 ## Building
@@ -12,10 +12,10 @@ docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder
 docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly 
 ```
 
-A statically linked executable will be created under `target/x86_64-unknown-linux-musl/release/`.
+A statically linked binary will be created under `target/x86_64-unknown-linux-musl/release/`.
 
 ## Testing
-Override the entry point to run tests against the statically linked executable:
+Override the entry point to run tests against the statically linked binary:
 
 ```sh
 docker run \
@@ -26,7 +26,7 @@ docker run \
 ```
 
 ## Disable stripping
-By default the built executable will be stripped. Run with `-e NOSTRIP=1`, as in
+By default the built binary will be stripped. Run with `-e NOSTRIP=1`, as in
 
 ```sh
 docker run --rm -e NOSTRIP=1 -v "$(pwd)":/build fredrikfornwall/rust-static-builder
@@ -45,7 +45,7 @@ docker run \
 ```
 
 ## Creating a lightweight Docker image
-The statically built executable can be used to create a lightweight Docker image built from scratch:
+The built binary can be used to create a lightweight Docker image built from scratch:
 
 ```dockerfile
 FROM scratch
@@ -60,7 +60,7 @@ The rust-static-builder image contains statically libraries for the following im
 - openssl
 - zlib
 
-Note that if the built executable needs certificates for OpenSSL [a base image containing /cacert.pem](scratch-with-certificates/Dockerfile) can be used:
+Note that if the projects needs certificates for OpenSSL a [base image containing /cacert.pem](scratch-with-certificates/Dockerfile) can be used:
 
 ```dockerfile
 FROM fredrikfornwall/scratch-with-certificates
