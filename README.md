@@ -12,6 +12,9 @@ This will create a statically linked output executable under
 
     target/x86_64-unknown-linux-musl/release/
 
+## Using the nightly instead of stable channel
+Use `fredrikfornwall/rust-static-builder-nightly` in the above command.
+
 ## Disable stripping
 By default the built executable will be stripped. Run with `-e NOSTRIP=1`, as in
 

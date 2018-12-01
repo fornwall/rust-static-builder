@@ -1,7 +1,11 @@
+IMAGE=fredrikfornwall/rust-static-builder
+
 build:
-	docker build -t fredrikfornwall/rust-static-builder .
+	docker build --build-arg TOOLCHAIN=stable -t $(IMAGE) .
+	docker build --build-arg TOOLCHAIN=nightly -t $(IMAGE)-nightly .
 
 push: build
-	docker push fredrikfornwall/rust-static-builder
+	docker push $(IMAGE)
+	docker push $(IMAGE)-nightly
 
 .PHONY: build push

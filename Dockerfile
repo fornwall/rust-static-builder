@@ -1,5 +1,7 @@
 FROM ubuntu:18.10
 
+ARG TOOLCHAIN
+
 RUN apt-get -qq update && \
     apt-get -qq install -y \
         build-essential \
@@ -9,7 +11,7 @@ RUN apt-get -qq update && \
         pkg-config
 
 RUN curl https://sh.rustup.rs -sSf | \
-    sh -s -- -y --default-toolchain stable && \
+    sh -s -- -y --default-toolchain $TOOLCHAIN && \
     /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl
 
 RUN cd /tmp && LIBLZMA_VERSION=5.2.4 && \
