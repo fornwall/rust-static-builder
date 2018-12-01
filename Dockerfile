@@ -6,6 +6,7 @@ RUN apt-get -qq update && \
     apt-get -qq install -y \
         build-essential \
         curl \
+        git \
         musl-dev \
         musl-tools \
         pkg-config

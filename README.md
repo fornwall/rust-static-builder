@@ -5,15 +5,20 @@ Docker image for building static Linux binaries from Rust projects.
 From inside your project directoring containing a `Cargo.toml` file:
 
 ```sh
+# Stable release channel:
 docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder
+# Nightly release channel:
+docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly 
 ```
 
-This will create a statically linked output executable under
+A statically linked executable will be created under `target/x86_64-unknown-linux-musl/release/`.
 
-    target/x86_64-unknown-linux-musl/release/
+## Testing
+Override the entry point to run tests against the statically linked executable:
 
-## Using the nightly instead of stable channel
-Use `fredrikfornwall/rust-static-builder-nightly` in the above command.
+```sh
+docker run -v "$(PWD)":/build -v --entrypoint cargo fredrikfornwall/rust-static-builder test --target x86_64-unknown-linux-musl
+```
 
 ## Disable stripping
 By default the built executable will be stripped. Run with `-e NOSTRIP=1`, as in
@@ -23,6 +28,16 @@ docker run --rm -e NOSTRIP=1 -v "$(pwd)":/build fredrikfornwall/rust-static-buil
 ```
 
 to disable stripping.
+
+## Speeding up builds by sharing registry and git folders
+To speed up builds the cargo registry and git folders can be mounted:
+
+```sh
+docker run \
+       -v "$PWD":/build fredrikfornwall/rust-static-builder \
+       -v $HOME/.cargo/git:/root/.cargo/git \
+       -v $HOME/.cargo/registry:/root/.cargo/registry
+```
 
 ## Creating a lightweight Docker image
 The statically built executable can be used to create a lightweight Docker image built from scratch:
