@@ -3,6 +3,7 @@ FROM ubuntu:18.10
 ARG TOOLCHAIN
 
 RUN apt-get -qq update && \
+    apt-get -qq upgrade && \
     apt-get -qq install -y \
         build-essential \
         curl \
