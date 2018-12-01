@@ -14,12 +14,24 @@ docker run --rm -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly
 
 A statically linked binary will be created under `target/x86_64-unknown-linux-musl/release/`.
 
+## Speeding up builds by sharing registry and git folders
+To speed up builds the cargo registry and git folders can be mounted:
+
+```sh
+docker run \
+       -v "$PWD":/build fredrikfornwall/rust-static-builder \
+       -v $HOME/.cargo/git:/root/.cargo/git \
+       -v $HOME/.cargo/registry:/root/.cargo/registry
+```
+
 ## Testing
 Override the entry point to run tests against the statically linked binary:
 
 ```sh
 docker run \
        -v "$(PWD)":/build \
+       -v $HOME/.cargo/git:/root/.cargo/git \
+       -v $HOME/.cargo/registry:/root/.cargo/registry \
        --entrypoint cargo \
        fredrikfornwall/rust-static-builder \
        test --target x86_64-unknown-linux-musl
@@ -33,16 +45,6 @@ docker run --rm -e NOSTRIP=1 -v "$(pwd)":/build fredrikfornwall/rust-static-buil
 ```
 
 to disable stripping.
-
-## Speeding up builds by sharing registry and git folders
-To speed up builds the cargo registry and git folders can be mounted:
-
-```sh
-docker run \
-       -v "$PWD":/build fredrikfornwall/rust-static-builder \
-       -v $HOME/.cargo/git:/root/.cargo/git \
-       -v $HOME/.cargo/registry:/root/.cargo/registry
-```
 
 ## Creating a lightweight Docker image
 The built binary can be used to create a lightweight Docker image built from scratch:
