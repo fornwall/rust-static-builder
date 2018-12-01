@@ -1,5 +1,5 @@
 build:
-	docker build -t fornwall/rust-static-builder .
+	docker build -t fredrikfornwall/rust-static-builder .
 
 push:
-	docker push fornwall/rust-static-builder
+	docker push fredrikfornwall/rust-static-builder

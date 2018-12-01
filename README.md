@@ -5,7 +5,7 @@ Docker image for building static Linux binaries from Rust cargo projects.
 From inside your project directoring containing a `Cargo.toml` file:
 
 ```sh
-docker run --rm -v "$(pwd)":/build fornwall/rust-static-builder
+docker run --rm -v "$(pwd)":/build fredrikfornwall/rust-static-builder
 ```
 
 This will create a statically linked output executable under
