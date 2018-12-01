@@ -13,8 +13,8 @@ RUN curl https://sh.rustup.rs -sSf | \
     /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl
 
 RUN cd /tmp && LIBLZMA_VERSION=5.2.4 && \
-    curl -LO "https://tukaani.org/xz/xz-$LIBLZMA_VERSION.tar.gz" && \
-    tar xf "xz-$LIBLZMA_VERSION.tar.gz" && cd xz-$LIBLZMA_VERSION && \
+    curl -LO "https://tukaani.org/xz/xz-$LIBLZMA_VERSION.tar.xz" && \
+    tar xf "xz-$LIBLZMA_VERSION.tar.xz" && cd xz-$LIBLZMA_VERSION && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
     make install
 
@@ -36,13 +36,12 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
     rm -r /tmp/*
 
 ENV \
-    DEP_OPENSSL_INCLUDE=/usr/local/musl/include/ \
     LIBZ_SYS_STATIC=1 \
     OPENSSL_DIR=/usr/local/musl/ \
     OPENSSL_INCLUDE_DIR=/usr/local/musl/include/ \
     OPENSSL_LIB_DIR=/usr/local/musl/lib/ \
     OPENSSL_STATIC=1 \
-    PATH=/root/.cargo/bin:/usr/local/musl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+    PATH=/root/.cargo/bin:/usr/bin:/bin \
     PKG_CONFIG_ALLOW_CROSS=true \
     PKG_CONFIG_ALL_STATIC=true \
     PKG_CONFIG_LIBDIR=/usr/local/musl/lib/pkgconfig/ \
@@ -53,4 +52,3 @@ WORKDIR /build
 
 COPY build.sh /root/build.sh
 ENTRYPOINT /root/build.sh
-
