@@ -19,7 +19,7 @@ To speed up builds the cargo registry and git folders can be mounted:
 
 ```sh
 docker run \
-       -v "$PWD":/build fredrikfornwall/rust-static-builder \
+       -v "$PWD":/build \
        -v $HOME/.cargo/git:/root/.cargo/git \
        -v $HOME/.cargo/registry:/root/.cargo/registry \
        fredrikfornwall/rust-static-builder
