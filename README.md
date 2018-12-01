@@ -66,7 +66,7 @@ The rust-static-builder image contains statically libraries for the following im
 - openssl
 - zlib
 
-Note that if the projects needs certificates for OpenSSL a [base image containing /cacert.pem](scratch-with-certificates/Dockerfile) can be used:
+Note that if the projects needs certificates for OpenSSL a [base image containing /cacert.pem](scratch-with-certificates/Dockerfile) can be used when building a Docker image:
 
 ```dockerfile
 FROM fredrikfornwall/scratch-with-certificates
