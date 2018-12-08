@@ -36,8 +36,15 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
     curl -LO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
     tar xf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
-    make install && \
-    rm -r /tmp/*
+    make install
+
+RUN cd /tmp && SQLITE_TAR=sqlite-autoconf-3260000.tar.gz && \
+    curl -LO https://www.sqlite.org/2018/$SQLITE_TAR && \
+    tar xf "$SQLITE_TAR" && cd "sqlite-autoconf-3260000" && \
+    CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
+    make install
+
+RUN rm -r /tmp/*
 
 ENV \
     LIBZ_SYS_STATIC=1 \
