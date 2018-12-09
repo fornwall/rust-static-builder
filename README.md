@@ -64,6 +64,7 @@ The rust-static-builder image contains statically libraries for the following im
 
 - liblzma
 - openssl
+- sqlite
 - zlib
 
 Note that if the projects needs certificates for OpenSSL a [base image containing /cacert.pem](scratch-with-certificates/Dockerfile) can be used when building a Docker image:
