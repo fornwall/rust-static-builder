@@ -3,7 +3,7 @@ set -e -u
 
 cargo build \
 	--release \
-	--bin \
+	--bins \
 	--target x86_64-unknown-linux-musl
 
 if [ -z ${NOSTRIP+x} ]; then
