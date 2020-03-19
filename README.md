@@ -1,4 +1,6 @@
 [![Build status](https://github.com/fornwall/rust-static-builder/workflows/Build/badge.svg)](https://github.com/fornwall/rust-static-builder/actions?query=branch%3Amaster)
+[![Docker Image](https://img.shields.io/docker/pulls/fredrikfornwall/rust-static-builder.svg?maxAge=2592000)](https://hub.docker.com/r/fredrikfornwall/rust-static-builder/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # Rust static binary builder
 Docker image for building statically linked Linux binaries from Rust projects.
