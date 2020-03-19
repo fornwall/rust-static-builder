@@ -17,14 +17,14 @@ RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
     /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl
 
-RUN cd /tmp && LIBLZMA_VERSION=5.2.4 && \
+RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     curl -LO "https://tukaani.org/xz/xz-$LIBLZMA_VERSION.tar.xz" && \
     tar xf "xz-$LIBLZMA_VERSION.tar.xz" && cd xz-$LIBLZMA_VERSION && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
     make install
 
 # -DOPENSSL_NO_SECURE_MEMORY needed due to https://github.com/openssl/openssl/issues/7207
-RUN cd /tmp && OPENSSL_VERSION=1.1.1d && \
+RUN cd /tmp && OPENSSL_VERSION=1.1.1e && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC=musl-gcc ./Configure \
