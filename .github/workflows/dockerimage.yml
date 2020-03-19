@@ -15,4 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: make
+      env:
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      run: |
+        docker -u fredrikfornwall -p $DOCKER_HUB_ACCESS_TOKEN
+        make push
