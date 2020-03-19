@@ -1,4 +1,4 @@
-![Docker Image CI](https://github.com/fornwall/rust-static-builder/workflows/Docker%20Image%20CI/badge.svg)
+[![Docker Image CI](https://github.com/fornwall/rust-static-builder/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/fornwall/rust-static-builder/actions?query=branch%3Amaster)
 
 # Rust static binary builder
 Docker image for building statically linked Linux binaries from Rust projects.
