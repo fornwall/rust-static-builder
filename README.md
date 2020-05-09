@@ -10,10 +10,10 @@ From inside your project directoring containing a `Cargo.toml` file:
 
 ```sh
 # Stable release channel:
-docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.43.0
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.43.1
 
 # Nightly release channel:
-docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly:2020-02-16
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly:2020-05-09
 ```
 
 A statically linked binary will be created under `target/x86_64-unknown-linux-musl/release/`.
@@ -26,7 +26,7 @@ docker run \
        -v "$PWD":/build \
        -v $HOME/.cargo/git:/root/.cargo/git \
        -v $HOME/.cargo/registry:/root/.cargo/registry \
-       fredrikfornwall/rust-static-builder:1.43.0
+       fredrikfornwall/rust-static-builder:1.43.1
 ```
 
 ## Testing
@@ -38,7 +38,7 @@ docker run \
        -v $HOME/.cargo/git:/root/.cargo/git \
        -v $HOME/.cargo/registry:/root/.cargo/registry \
        --entrypoint cargo \
-       fredrikfornwall/rust-static-builder:1.43.0 \
+       fredrikfornwall/rust-static-builder:1.43.1 \
        test --target x86_64-unknown-linux-musl
 ```
 
@@ -49,7 +49,7 @@ By default the built binary will be stripped. Run with `-e NOSTRIP=1`, as in
 docker run \
        -e NOSTRIP=1 \
        -v "$PWD":/build \
-       fredrikfornwall/rust-static-builder:1.43.0
+       fredrikfornwall/rust-static-builder:1.43.1
 ```
 
 to disable stripping.
