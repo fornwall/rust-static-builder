@@ -48,8 +48,8 @@ RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3310100 && \
 RUN cd /tmp && BZ2_VERSION=1.0.8 && \
     curl -LO ftp://sourceware.org/pub/bzip2/bzip2-$BZ2_VERSION.tar.gz && \
     tar xf "bzip2-$BZ2_VERSION.tar.gz" && cd "bzip2-$BZ2_VERSION" && \
-    CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
-    make install
+    make CC=musl-gcc PREFIX=/usr/local/musl bzip2 && \
+    make install PREFIX=/usr/local/musl
 
 RUN rm -r /tmp/*
 
