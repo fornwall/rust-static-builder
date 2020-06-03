@@ -1,10 +1,10 @@
-FROM ubuntu:19.10
+FROM ubuntu:20.04
 
 ARG TOOLCHAIN
 
-RUN apt-get -qq update && \
-    apt-get -qq upgrade && \
-    apt-get -qq install -y \
+RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq upgrade && \
+    DEBIAN_FRONTEND=noninteractive apt-get -qq install -y \
         build-essential \
         curl \
         git \
@@ -42,6 +42,12 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
 RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3310100 && \
     curl -LO https://www.sqlite.org/2020/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
+    CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
+    make install
+
+RUN cd /tmp && BZ2_VERSION=1.0.8 && \
+    curl -LO ftp://sourceware.org/pub/bzip2/bzip2-$BZ2_VERSION.tar.gz && \
+    tar xf "bzip2-$BZ2_VERSION.tar.gz" && cd "bzip2-$BZ2_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
     make install
 
