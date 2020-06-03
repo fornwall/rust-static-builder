@@ -66,10 +66,11 @@ ENTRYPOINT ["/my-executable"]
 ## Native libraries and OpenSSL
 The rust-static-builder image contains statically libraries for the following images in order for crates to be able to link them in:
 
-- liblzma
-- openssl
-- sqlite
-- zlib
+- [bzip2](https://www.sourceware.org/bzip2/)
+- [liblzma](https://tukaani.org/xz/)
+- [openssl](https://www.openssl.org/)
+- [sqlite](https://www.sqlite.org/)
+- [zlib](https://zlib.net/)
 
 Note that if the projects needs certificates for OpenSSL a [base image containing /cacert.pem](scratch-with-certificates/Dockerfile) can be used when building a Docker image:
 
