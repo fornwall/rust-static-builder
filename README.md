@@ -10,7 +10,7 @@ From inside your project directoring containing a `Cargo.toml` file:
 
 ```sh
 # Stable release channel:
-docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.43.1
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.44.0
 
 # Nightly release channel:
 docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly:2020-05-09
