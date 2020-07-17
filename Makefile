@@ -1,5 +1,5 @@
 IMAGE=fredrikfornwall/rust-static-builder
-STABLE_VERSION=1.44.1
+STABLE_VERSION=1.45.0
 CURRENT_DATE:=$(shell date "+%Y-%m-%d")
 
 build-stable:
