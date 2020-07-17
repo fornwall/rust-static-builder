@@ -10,7 +10,7 @@ From inside your project directoring containing a `Cargo.toml` file:
 
 ```sh
 # Stable release channel:
-docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.44.1
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.45.0
 
 # Nightly release channel:
 docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly:2020-05-09
@@ -26,7 +26,7 @@ docker run \
        -v "$PWD":/build \
        -v $HOME/.cargo/git:/root/.cargo/git \
        -v $HOME/.cargo/registry:/root/.cargo/registry \
-       fredrikfornwall/rust-static-builder:1.44.1
+       fredrikfornwall/rust-static-builder:1.45.0
 ```
 
 ## Testing
@@ -38,7 +38,7 @@ docker run \
        -v $HOME/.cargo/git:/root/.cargo/git \
        -v $HOME/.cargo/registry:/root/.cargo/registry \
        --entrypoint cargo \
-       fredrikfornwall/rust-static-builder:1.44.1 \
+       fredrikfornwall/rust-static-builder:1.45.0 \
        test --target x86_64-unknown-linux-musl
 ```
 
