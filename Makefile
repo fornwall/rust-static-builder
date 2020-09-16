@@ -3,13 +3,15 @@ STABLE_VERSION=1.46.0
 CURRENT_DATE:=$(shell date "+%Y-%m-%d")
 
 build-stable:
-	docker build --build-arg TOOLCHAIN=$(STABLE_VERSION) -t $(IMAGE):$(STABLE_VERSION) .
+	docker build --build-arg TOOLCHAIN=$(STABLE_VERSION) --tag $(IMAGE):$(STABLE_VERSION) .
+	docker tag $(IMAGE):$(STABLE_VERSION) $(IMAGE):latest
 
 push-stable: build-stable
 	docker push $(IMAGE)
 
 build-nightly:
-	docker build --build-arg TOOLCHAIN=nightly -t $(IMAGE)-nightly:$(CURRENT_DATE) .
+	docker build --build-arg TOOLCHAIN=nightly --tag $(IMAGE)-nightly:$(CURRENT_DATE) .
+	docker tag $(IMAGE)-nightly:$(CURRENT_DATE) $(IMAGE)-nigthly:latest
 
 push-nightly: build-nightly
 	docker push $(IMAGE)-nightly
