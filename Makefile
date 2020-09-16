@@ -11,7 +11,7 @@ push-stable: build-stable
 
 build-nightly:
 	docker build --build-arg TOOLCHAIN=nightly --tag $(IMAGE)-nightly:$(CURRENT_DATE) .
-	docker tag $(IMAGE)-nightly:$(CURRENT_DATE) $(IMAGE)-nigthly:latest
+	docker tag $(IMAGE)-nightly:$(CURRENT_DATE) $(IMAGE)-nightly:latest
 
 push-nightly: build-nightly
 	docker push $(IMAGE)-nightly
