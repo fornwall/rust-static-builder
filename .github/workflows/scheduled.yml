@@ -1,0 +1,17 @@
+name: Scheduled
+
+on:
+  schedule:
+  - cron: '0 23 * * *'
+
+jobs:
+  build-nightly:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the nightly Docker image
+      env:
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      run: |
+        docker login -u fredrikfornwall -p $DOCKER_HUB_ACCESS_TOKEN
+        make push-nightly
