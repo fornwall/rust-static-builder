@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:20.10
 
 ARG TOOLCHAIN
 
@@ -24,7 +24,7 @@ RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     make install
 
 # -DOPENSSL_NO_SECURE_MEMORY needed due to https://github.com/openssl/openssl/issues/7207
-RUN cd /tmp && OPENSSL_VERSION=1.1.1h && \
+RUN cd /tmp && OPENSSL_VERSION=1.1.1i && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC=musl-gcc ./Configure \
@@ -39,7 +39,7 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make install
 
-RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3330000 && \
+RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3340000 && \
     curl -LO https://www.sqlite.org/2020/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
