@@ -10,8 +10,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
         git \
         musl-dev \
         musl-tools \
-        pkg-config && \
-    ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/x86_64-linux-musl/asm
+        pkg-config
+# ln -s /usr/include/x86_64-linux-gnu/asm /usr/include/x86_64-linux-musl/asm
 
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
