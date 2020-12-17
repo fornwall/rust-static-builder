@@ -8,12 +8,8 @@ on:
 
 jobs:
 
-  build-and-push:
+  build-stable:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        rust: [stable, nightly]
     steps:
     - uses: actions/checkout@v2
     - name: Set up QEMU
@@ -30,4 +26,15 @@ jobs:
         DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
       run: |
         docker login -u fredrikfornwall -p $DOCKER_HUB_ACCESS_TOKEN
-        make build-and-push-${{ matrix.rust }}
+        make build-and-push-stable
+
+  build-nightly:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the nightly Docker image
+      env:
+        DOCKER_HUB_ACCESS_TOKEN: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      run: |
+        docker login -u fredrikfornwall -p $DOCKER_HUB_ACCESS_TOKEN
+        make build-and-push-nightly
