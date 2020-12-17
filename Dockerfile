@@ -15,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
 
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
-    /root/.cargo/bin/rustup target add `uname -m`-unknown-linux-musl
+    /root/.cargo/bin/rustup target add x86_64-unknown-linux-musl
 
 RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     curl -LO "https://tukaani.org/xz/xz-$LIBLZMA_VERSION.tar.xz" && \
@@ -29,7 +29,7 @@ RUN cd /tmp && OPENSSL_VERSION=1.1.1i && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC=musl-gcc ./Configure \
         no-shared no-zlib no-engine no-unit-test -DOPENSSL_NO_SECURE_MEMORY \
-        -fPIC --prefix=/usr/local/musl linux-`uname -m` && \
+        -fPIC --prefix=/usr/local/musl linux-x86_64 && \
     env C_INCLUDE_PATH=/usr/local/musl/include/ make depend && \
     make install_sw
 
