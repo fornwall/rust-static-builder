@@ -34,7 +34,7 @@ RUN cd /tmp && OPENSSL_VERSION=1.1.1i && \
     make install_sw
 
 RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
-    curl -LO "http://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
+    curl -LO "https://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
     tar xf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make install
