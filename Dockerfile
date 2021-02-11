@@ -40,7 +40,7 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
     make install
 
 RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3340100 && \
-    curl -LO https://www.sqlite.org/2020/$SQLITE_VERSION.tar.gz && \
+    curl -LO https://www.sqlite.org/2021/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
     make install
