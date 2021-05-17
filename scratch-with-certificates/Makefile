@@ -7,6 +7,6 @@ push: build
 	docker push $(IMAGE)
 
 download:
-	curl -O https://curl.haxx.se/ca/cacert.pem
+	curl -O https://curl.se/ca/cacert.pem
 
 .PHONY: build download push
