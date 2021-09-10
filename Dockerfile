@@ -24,7 +24,7 @@ RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     make install
 
 # -DOPENSSL_NO_SECURE_MEMORY needed due to https://github.com/openssl/openssl/issues/7207
-RUN cd /tmp && OPENSSL_VERSION=1.1.1k && \
+RUN cd /tmp && OPENSSL_VERSION=1.1.1l && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC=musl-gcc ./Configure \
