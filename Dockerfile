@@ -12,11 +12,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -qq update && \
         musl-dev \
         musl-tools \
         pkg-config && \
-    ln -s /usr/include/${TARGETPLATFORM%%-*}-linux-gnu/asm /usr/include/${TARGETPLATFORM%%-*}-linux-musl/asm
+    ln -s /usr/include/${${TARGETPLATFORM%%-*}//amd64/x86_64}-linux-gnu/asm /usr/include/${${TARGETPLATFORM%%-*}//amd64/x86_64}-linux-musl/asm
 
 RUN curl https://sh.rustup.rs -sSf | \
     sh -s -- -y --default-toolchain $TOOLCHAIN && \
-    /root/.cargo/bin/rustup target add ${TARGETPLATFORM%%-*}-unknown-linux-musl
+    /root/.cargo/bin/rustup target add ${${TARGETPLATFORM%%-*}//amd64/x86_64}-unknown-linux-musl
 
 RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     curl -LO "https://tukaani.org/xz/xz-$LIBLZMA_VERSION.tar.xz" && \
@@ -30,7 +30,7 @@ RUN cd /tmp && OPENSSL_VERSION=1.1.1l && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC=musl-gcc ./Configure \
         no-shared no-zlib no-engine no-unit-test -DOPENSSL_NO_SECURE_MEMORY \
-        -fPIC --prefix=/usr/local/musl linux-${TARGETPLATFORM%%-*} && \
+        -fPIC --prefix=/usr/local/musl linux-${${TARGETPLATFORM%%-*}//amd64/x86_64} && \
     env C_INCLUDE_PATH=/usr/local/musl/include/ make depend && \
     make install_sw
 
