@@ -11,12 +11,6 @@ jobs:
   build-stable:
     runs-on: ubuntu-latest
     steps:
-    # https://github.com/docker/setup-qemu-action
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v1
-    # https://github.com/docker/setup-buildx-action
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
     - uses: actions/checkout@v2
     - name: Build the stable Docker image
       env:
@@ -28,12 +22,6 @@ jobs:
   build-nightly:
     runs-on: ubuntu-latest
     steps:
-    # https://github.com/docker/setup-qemu-action
-    - name: Set up QEMU
-      uses: docker/setup-qemu-action@v1
-    # https://github.com/docker/setup-buildx-action
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
     - uses: actions/checkout@v2
     - name: Build the nightly Docker image
       env:
