@@ -39,7 +39,7 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make install
 
-RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3360000 && \
+RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3370000 && \
     curl -LO https://www.sqlite.org/2021/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
