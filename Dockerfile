@@ -24,7 +24,7 @@ RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     make install
 
 # -DOPENSSL_NO_SECURE_MEMORY needed due to https://github.com/openssl/openssl/issues/7207
-RUN cd /tmp && OPENSSL_VERSION=1.1.1l && \
+RUN cd /tmp && OPENSSL_VERSION=1.1.1m && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC=musl-gcc ./Configure \
@@ -39,8 +39,8 @@ RUN cd /tmp && ZLIB_VERSION=1.2.11 && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make install
 
-RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3370000 && \
-    curl -LO https://www.sqlite.org/2021/$SQLITE_VERSION.tar.gz && \
+RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3370200 && \
+    curl -LO https://www.sqlite.org/2022/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
     make install
