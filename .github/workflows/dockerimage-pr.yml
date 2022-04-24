@@ -18,4 +18,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the nightly Docker image
-      run: make push-nightly
+      run: make build-nightly
