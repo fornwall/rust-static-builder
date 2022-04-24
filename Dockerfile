@@ -1,4 +1,4 @@
-FROM ubuntu:21.10
+FROM ubuntu:22.04
 
 ARG TOOLCHAIN
 
@@ -23,12 +23,12 @@ RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
     make install
 
-# -DOPENSSL_NO_SECURE_MEMORY needed due to https://github.com/openssl/openssl/issues/7207
-RUN cd /tmp && OPENSSL_VERSION=1.1.1n && \
+# See https://github.com/openssl/openssl/issues/7207 for "-idirafter" CC setting
+RUN cd /tmp && OPENSSL_VERSION=3.0.2 && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
-    env CC=musl-gcc ./Configure \
-        no-shared no-zlib no-engine no-unit-test -DOPENSSL_NO_SECURE_MEMORY \
+    env CC="musl-gcc -static -idirafter /usr/include/ -idirafter /usr/include/x86_64-linux-gnu/" ./Configure \
+        no-shared no-zlib no-engine no-unit-test \
         -fPIC --prefix=/usr/local/musl linux-x86_64 && \
     env C_INCLUDE_PATH=/usr/local/musl/include/ make depend && \
     make install_sw
@@ -39,7 +39,7 @@ RUN cd /tmp && ZLIB_VERSION=1.2.12 && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make install
 
-RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3380000 && \
+RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3380200 && \
     curl -LO https://www.sqlite.org/2022/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
