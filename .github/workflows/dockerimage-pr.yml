@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build-stable:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the stable Docker image
+      run: make build-stable
+
+  build-nightly:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the nightly Docker image
+      run: make push-nightly
