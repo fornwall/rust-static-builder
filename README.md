@@ -13,7 +13,7 @@ From inside your project directoring containing a `Cargo.toml` file:
 docker run -v "$PWD":/build fredrikfornwall/rust-static-builder:1.60.0
 
 # Nightly release channel:
-docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly:2020-05-09
+docker run -v "$PWD":/build fredrikfornwall/rust-static-builder-nightly:2022-04-09
 ```
 
 A statically linked binary will be created under `target/x86_64-unknown-linux-musl/release/`.
