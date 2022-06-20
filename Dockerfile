@@ -24,7 +24,7 @@ RUN cd /tmp && LIBLZMA_VERSION=5.2.5 && \
     make install
 
 # See https://github.com/openssl/openssl/issues/7207 for "-idirafter" CC setting
-RUN cd /tmp && OPENSSL_VERSION=3.0.2 && \
+RUN cd /tmp && OPENSSL_VERSION=3.0.3 && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC="musl-gcc -static -idirafter /usr/include/ -idirafter /usr/include/x86_64-linux-gnu/" ./Configure \
@@ -39,7 +39,7 @@ RUN cd /tmp && ZLIB_VERSION=1.2.12 && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
     make install
 
-RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3380200 && \
+RUN cd /tmp && SQLITE_VERSION=sqlite-autoconf-3380500 && \
     curl -LO https://www.sqlite.org/2022/$SQLITE_VERSION.tar.gz && \
     tar xf "$SQLITE_VERSION.tar.gz" && cd "$SQLITE_VERSION" && \
     CC=musl-gcc ./configure --enable-static --disable-shared --prefix=/usr/local/musl && \
