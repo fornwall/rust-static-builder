@@ -18,3 +18,4 @@ clean:
 	docker rmi $(IMAGE) $(IMAGE)-nightly
 
 .PHONY: build-stable push-stable build-nightly push-nightly clean
+
