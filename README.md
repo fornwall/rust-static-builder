@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 # Rust static binary builder
-Docker image for building statically linked Linux binaries from Rust projects.
+Docker image for building statically linked x86_64 Linux binaries from Rust projects.
 
 ## Building
 From inside your project directoring containing a `Cargo.toml` file:
