@@ -33,7 +33,7 @@ RUN cd /tmp && OPENSSL_VERSION=3.0.6 && \
     env C_INCLUDE_PATH=/usr/local/musl/include/ make depend && \
     make install_sw
 
-RUN cd /tmp && ZLIB_VERSION=1.2.12 && \
+RUN cd /tmp && ZLIB_VERSION=1.2.13 && \
     curl -LO "https://zlib.net/zlib-$ZLIB_VERSION.tar.gz" && \
     tar xf "zlib-$ZLIB_VERSION.tar.gz" && cd "zlib-$ZLIB_VERSION" && \
     CC=musl-gcc ./configure --static --prefix=/usr/local/musl && \
