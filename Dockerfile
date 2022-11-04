@@ -24,7 +24,7 @@ RUN cd /tmp && LIBLZMA_VERSION=5.2.7 && \
     make install
 
 # See https://github.com/openssl/openssl/issues/7207 for "-idirafter" CC setting
-RUN cd /tmp && OPENSSL_VERSION=3.0.5 && \
+RUN cd /tmp && OPENSSL_VERSION=3.0.7 && \
     curl -LO "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" && \
     tar xf "openssl-$OPENSSL_VERSION.tar.gz" && cd "openssl-$OPENSSL_VERSION" && \
     env CC="musl-gcc -static -idirafter /usr/include/ -idirafter /usr/include/x86_64-linux-gnu/" ./Configure \
